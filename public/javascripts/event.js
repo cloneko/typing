@@ -23,7 +23,14 @@
   });
 
   socket.on('updateMembers', function(members) {
-    return $("#members").text(members);
+    $("#members").text(members);
+    if (members > 1) {
+      $("#textbox").val('');
+      return $("#textbox").removeAttr('disabled');
+    } else {
+      $("#textbox").val('');
+      return $("#textbox").attr('disabled', 'disabled');
+    }
   });
 
   socket.on('notify', function(data) {

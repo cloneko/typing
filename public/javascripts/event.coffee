@@ -14,6 +14,12 @@ socket.on 'login',(data) ->
 
 socket.on 'updateMembers', (members) ->
   $("#members").text members
+  if members > 1
+    $("#textbox").val('')
+    $("#textbox").removeAttr('disabled')
+  else
+    $("#textbox").val('')
+    $("#textbox").attr('disabled','disabled')
 
 socket.on 'notify', (data) ->
   total += 1
