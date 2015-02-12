@@ -38,7 +38,7 @@ app.listen 3000, ->
 # socket.io
 
 getKeyword = -> 
-  dict = ['keyword','wtf','ぬるぽ']
+  dict = ['IT-College Okinawa','アイカレッター','ぬるぽ','System.out.println()','I love Python!!!!!!!','あざらしあうあう','あざらしあうあうあ','CoffeeScript','東京特許許可局','ハローワールド','花崗岩','Haローわールど','みんな授業受けましょう!','rm -fr /','もんくー?','asdf1234','すももももももももものうち']
   dict[Math.floor(Math.random() * dict.length)]
 
 keyword = getKeyword()
@@ -51,9 +51,11 @@ io.on 'connection', (socket) ->
 
   socket.on 'send', (data) ->
     console.log data 
-    before = keyword
-    keyword = getKeyword()
-    io.sockets.emit 'notify', {before: before, current: keyword, uuid: data['uuid']}
+    if data['answer'] is keyword
+      before = keyword
+      keyword = getKeyword()
+      io.sockets.emit 'notify', {before: before, current: keyword, uuid: data['uuid']}
+
   socket.on 'disconnect', (data) ->
     members -= 1
     io.sockets.emit 'updateMembers', members
