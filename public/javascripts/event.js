@@ -22,18 +22,22 @@
     return $("#score").text(score);
   });
 
+  socket.on('updateMembers', function(members) {
+    return $("#members").text(members);
+  });
+
   socket.on('notify', function(data) {
     total += 1;
     if (data['uuid'] === uuid) {
-      $("#messages").append('<li>' + data['before'] + '</li>');
+      $("#messages").prepend('<li>' + data['before'] + '</li>');
       wins += 1;
     } else {
-      $("#messages").append('<li class="lose">' + data['before'] + '</li>');
+      $("#messages").prepend('<li class="lose">' + data['before'] + '</li>');
     }
     current = data['current'];
     $("#keyword").text(current);
     $("#textbox").val('');
-    score = wins / total * 100;
+    score = Math.floor(wins / total * 100);
     $("#score").text(score + '%(' + wins + '/' + total + ')');
   });
 
@@ -45,8 +49,11 @@
           answer: $("#textbox").val()
         });
       } else {
-        console.log($("#textbox").val());
-        alert("まちがってるよ!!!");
+        $('body').css('background-color', 'red');
+        $(this).delay(500).queue(function() {
+          $('body').css('background-color', 'white');
+          return $(this).dequeue();
+        });
       }
     }
   });

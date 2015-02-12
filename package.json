@@ -6,10 +6,8 @@
       "express": "2.5.8"
     , "jade": ">= 0.0.1"
     , "socket.io": "*"
-    , "jQuery": "*"
+    , "jquery": "*"
     , "uuid": "*"
     , "coffee-script": "*"
-    , "angular": "*"
-    , "angular-socket-io": "*"
   }
 }

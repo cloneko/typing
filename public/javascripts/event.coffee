@@ -12,13 +12,16 @@ socket.on 'login',(data) ->
   $("#textbox").val('')
   $("#score").text score
 
+socket.on 'updateMembers', (members) ->
+  $("#members").text members
+
 socket.on 'notify', (data) ->
   total += 1
   if data['uuid'] is uuid
-    $("#messages").append '<li>' + data['before'] + '</li>'
+    $("#messages").prepend '<li>' + data['before'] + '</li>'
     wins += 1
   else
-    $("#messages").append('<li class="lose">' + data['before'] + '</li>') 
+    $("#messages").prepend('<li class="lose">' + data['before'] + '</li>') 
   current = data['current']
   $("#keyword").text current
   $("#textbox").val('')
@@ -31,6 +34,8 @@ $(window).keydown (e) ->
     if current is $("#textbox").val()
       socket.emit 'send', {uuid: uuid, answer: $("#textbox").val()}
     else
-      console.log $("#textbox").val()
-      alert "まちがってるよ!!!"
+      $('body').css('background-color','red')
+      $(this).delay(500).queue -> 
+        $('body').css('background-color', 'white')
+        $(this).dequeue()
   return
