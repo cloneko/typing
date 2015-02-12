@@ -8,7 +8,7 @@ routes = require './routes'
 fs = require 'fs'
 app = module.exports = express.createServer()
 io = require('socket.io')(app)
-uuid = require('uuid')(app)
+uuid = require('uuid')
 
 # Configuration
 app.configure ->
