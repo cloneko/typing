@@ -16,3 +16,23 @@ div#messagebox {
   width: auto;
   height: 200px;
 }
+
+div#boxes {
+    margin-top: 1em;
+}
+
+div#mybox, div#enemybox {
+  overflow: scroll;
+  width: 45%;
+  height: 200px;
+  border: solid 1px #000;
+  padding: 10px;
+}
+
+div#enemybox {
+    float: right;    
+}
+
+div#mybox {
+    float: left;    
+}

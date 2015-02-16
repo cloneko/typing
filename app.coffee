@@ -29,6 +29,7 @@ app.configure 'production', ->
   return
 # Routes
 app.get '/', routes.index
+app.get '/index2', routes.index2
 app.listen 3000, ->
   console.log 'Express server listening on port %d in %s mode', app.address().port, app.settings.env
   return
