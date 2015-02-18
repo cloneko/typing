@@ -7,6 +7,7 @@ score = 'まだ始まってないよ'
 $("#myCount").text 0
 $("#enemyCount").text 0
 
+
 socket.on 'login',(data) ->
   uuid = data['uuid']
   current = data['current']
@@ -14,14 +15,19 @@ socket.on 'login',(data) ->
   $("#textbox").val('')
   $("#score").text score
 
+socket.on 'enemy', (data) ->
+  $("#enemysinput").val(data)
+
 socket.on 'updateMembers', (members) ->
   $("#members").text members
   if members > 1
     $("#textbox").val('')
     $("#textbox").removeAttr('disabled')
+    $("#keyword").text current
   else
     $("#textbox").val('')
     $("#textbox").attr('disabled','disabled')
+    $("#keyword").text ""
 
 socket.on 'notify', (data) ->
   total += 1
@@ -57,4 +63,6 @@ $(window).keydown (e) ->
       $(this).delay(500).queue -> 
         $('body').css('background-color', 'white')
         $(this).dequeue()
+  else
+    socket.emit 'current' , $("#textbox").val()
   return

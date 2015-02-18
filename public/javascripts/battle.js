@@ -26,14 +26,20 @@
     return $("#score").text(score);
   });
 
+  socket.on('enemy', function(data) {
+    return $("#enemysinput").val(data);
+  });
+
   socket.on('updateMembers', function(members) {
     $("#members").text(members);
     if (members > 1) {
       $("#textbox").val('');
-      return $("#textbox").removeAttr('disabled');
+      $("#textbox").removeAttr('disabled');
+      return $("#keyword").text(current);
     } else {
       $("#textbox").val('');
-      return $("#textbox").attr('disabled', 'disabled');
+      $("#textbox").attr('disabled', 'disabled');
+      return $("#keyword").text("");
     }
   });
 
@@ -77,6 +83,8 @@
           return $(this).dequeue();
         });
       }
+    } else {
+      socket.emit('current', $("#textbox").val());
     }
   });
 

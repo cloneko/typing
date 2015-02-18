@@ -57,6 +57,9 @@ io.on 'connection', (socket) ->
       keyword = getKeyword()
       io.sockets.emit 'notify', {before: before, current: keyword, uuid: data['uuid']}
 
+  socket.on 'current', (data) ->
+    socket.broadcast.emit 'enemy', data
+
   socket.on 'disconnect', (data) ->
     members -= 1
     io.sockets.emit 'updateMembers', members
