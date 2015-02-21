@@ -56,6 +56,7 @@
     current = data['current'];
     $("#keyword").text(current);
     $("#textbox").val('');
+    $("#enemysinput").val('');
     score = Math.floor(wins / total * 100);
     $("#score").text(score + '%(' + wins + '/' + total + ')');
     if (wins >= 10 || total - wins >= 10) {

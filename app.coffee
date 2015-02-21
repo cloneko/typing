@@ -39,7 +39,7 @@ app.listen 3000, ->
 # socket.io
 
 getKeyword = -> 
-  dict = ['IT-College Okinawa','アイカレッター','ぬるぽ','System.out.println()','I love Python!!!!!!!','あざらしあうあう','あざらしあうあうあ','CoffeeScript','東京特許許可局','ハローワールド','花崗岩','Haローわールど','みんな授業受けましょう!','rm -fr /','もんくー?','asdf1234','すももももももももものうち']
+  dict = ['http://www.google.com/','jQuery','ぬるぽ','System.out.println()','I love Python!!!!!!!','socket.io + express + jade','お前はもう死んでいる…','CoffeeScript','東京特許許可局','ハローワールド','花崗岩','Haローわールど','みんな授業受けましょう!','rm -fr /','罵詈雑言','asdf1234','すももももももももものうち']
   dict[Math.floor(Math.random() * dict.length)]
 
 keyword = getKeyword()
